@@ -20,4 +20,5 @@ git merge dev
   把当前分支（git branch 命令输出前面带星号的分支）与指定dev 分支进行合并 
 
 
-我是 bin-dev
+我是 bin-dev  、
+我要通过bin-dev 修改的
