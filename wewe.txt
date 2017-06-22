@@ -4,3 +4,20 @@
 git log 查看日志
 git log --oneline 查看简洁版的日志  在一行输出
 q 退出
+
+
+git branch dev 创建了一个dev分支
+
+dev 创建时与master(主分支) 代码为一样
+
+切换分支
+ git checkout dev 
+  
+git branch 可以查看当前有哪些分支，可以方便切换 
+  
+合并分支为 
+git merge dev  
+  把当前分支（git branch 命令输出前面带星号的分支）与指定dev 分支进行合并 
+
+
+我是 bin-dev
