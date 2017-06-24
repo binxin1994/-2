@@ -1,0 +1,139 @@
+ssh方式上传代码：
+公钥放在服务器上，私钥为个人使用，两者对应匹配，以验证身份
+
+生成公钥方式：
+命令:ssh-keygen -t rsa -C "用户邮箱"
+rsa为其加密方式
+生成的pub后缀为公钥。没有的那个为私钥
+
+模拟两个用户：
+本地修改，再pull同一个文件，会产生冲突，需手动解决
+解决方法:先把冲突的pull下来，手动修改再push上去，即可解决
+无论有没有冲突，·最保险的方法是先pull，修改确认后，本地提交，再push上去
+
+
+pull和push的简写方式:
+修改命令:
+	第一步: git remote add origin 仓库地址
+			(解决绑定地址问题，origin可随意，相当于将仓库地址赋值给origin变量)
+	第二步:git push -u master 分支名
+		   (-u参数，解决origin 分支名 简写问题，这样绑定了master)
+备注：只针对当前目录
+简写为:
+	第一步简写为:git push origin 分支名
+	最后简写为:git push
+备注:pull类似
+
+
+npm
+npm依赖于node.js平台中运行的
+作用:自动管理项目的依赖包
+查看版本:cmd命令行中 npm -v
+
+初始化操作:
+在工作目录中运行cmd命令行，
+npm init 
+生成一个package.json文件(该文件里的信息是在npm init后填写的信息)
+
+下载需要的包
+在该cmd命令行中: npm install jquery  下载jquery
+会去registry.npmjs.org这个地址下载jquery文件
+在当前文件夹会生成一个node_modules文件夹，所需文件在该文件夹中
+
+约定版本号:
+npm install jquery --save
+将该版本号约定到package.json中的dependencies中，方便所有开发者明白运行环境，下次npm install可通过该package.json中所有指定的文件自动下载
+
+
+gulp
+代码压缩
+
+混淆
+	
+合并
+	合并，减少请求
+
+
+5个核心方法:
+1、gulp.task('任务名', function(){	})       		//创建任务
+2、gulp.src('./.js.css')   							//指定想要处理的文件
+3、gulp.dest()  									//指定最终处理后的文件的存放路径
+4、gulp.watch() 									//自动监视文件的变化，然后执行相应的任务
+5、gulp.run('任务名') 								//直接执行相应的任务
+
+
+安装gulp
+通过npm安装:
+命令：npm install gulp-cli -g 	
+
+查看版本号:
+命令：gulp -v	
+
+gulp使用:
+第一步:在当前项目中也要安装gulp, 命令:npm install gulp --save
+	(新文件夹首先要npm init,该文件夹名不能为gulp)
+第二步:还需要在当前项目中新建一个文件:gulpfile.js
+	在里面引入，并定义任务
+第三步:执行任务, 命令:   gulp 任务名
+
+gulp对js压缩:
+第一步：在当前文件夹中安装uglify包，命令:npm install gulp-uglify --save
+在gulpfile.js中, var 变量名 = require('gulp-uglify'); .pipe('变量名(')
+
+gulp对js进行合并操作：
+命令:npm install gulp-concat --save
+在gulpfile.js文件中,var  变零名 = require('gulp-concat'),对gulp.src中参数指定数组形式，多个文件夹路径(字符串形式)组成，.pipe(concat('生成文件名'))，先压缩和先合并不同，采用先合并再压缩
+
+gulp对css文件压缩:
+安装依赖包命令: npm install gulp-cssnano --save
+在gulpfile.js文件中， var 变量名 =require('gulp-cssnano'),对gulp.src中参数指定数组形式，多个文件夹路径(字符串形式)组成，
+.pipe(合并的变量名('压缩后文件名'))   .pipe(变量名()) .pipe指定输出目录
+
+
+gulp对html文件压缩:
+安装依赖包命令：npm install gulp-htmlmin --save
+//引入html压缩包：
+var minHtml = require('gulp-htmlmin');
+gulp.task('htmlmin', function(){
+	gulp.src(['./index.html'])
+	.pipe(minHtml({collapeseWhitespace:true}))
+	.pipe(gulp.dest('./dist'))
+})
+
+
+gulp 监视文件变化，执行相应任务：
+gulp.task('look', function(){
+	gulp.run('要执行的任务名');   //解决不在监听范围内的问题
+	//1、监视js文件的变化，然后执行script人去
+	// 第一个参数
+	// 第二个参数：要执行的任务
+	gulp.watch([要监视的文件名], [要执行的任务名，字符串形式])
+})
+备注:实时监视，每次执行定义的任务
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
